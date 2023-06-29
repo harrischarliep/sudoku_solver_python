@@ -1,22 +1,5 @@
-PUZZLE_SIZE = 9
-SQUARE_SIZE = int(PUZZLE_SIZE / 3)
-MAX_ITERATIONS = 100
-
-def copy_2d_array(arr):
-    copy = []
-    for r in range(0, len(arr)):
-        row = [x for x in arr[r]]
-        copy.append(row)
-    return copy
-
-def copy_2d_array_inverted(arr):
-    inverted = []
-    for c in range(0, PUZZLE_SIZE):
-        col = []
-        for r in range(0, PUZZLE_SIZE):
-            col.append(arr[r][c])
-        inverted.append(col)
-    return inverted
+from constants import PUZZLE_SIZE, SQUARE_SIZE, MAX_ITERATIONS
+from utils import copy_2d_array, copy_2d_array_inverted
 
 get_rows = copy_2d_array
 get_cols = copy_2d_array_inverted

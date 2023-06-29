@@ -5,6 +5,7 @@ def copy_2d_array(arr):
         copy.append(row)
     return copy
 
+# Assumes that arr is non-empty
 def copy_2d_array_inverted(arr):
     inverted = []
     for c in range(0, len(arr[0])):

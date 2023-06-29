@@ -64,8 +64,6 @@ def solve(puzzle):
             for c in range(0, PUZZLE_SIZE):
                 if len(possible_vals[r][c]) == 1:
                     continue
-
-                debug = False
                 
                 (row_r, row_c) = (r, c)
                 in_row = [x for x in rows[row_r] if x != 0]
@@ -77,13 +75,6 @@ def solve(puzzle):
                 in_square = [x for x in squares[square_r] if x != 0]
 
                 possible_vals[r][c] = [x for x in possible_vals[r][c] if not x in in_row and not x in in_col and not x in in_square]
-
-                if debug:
-                    print("in row: " + str(in_row))
-                    print("in col: " + str(in_col))
-                    # print(cols[col_r])
-                    print("in square: " + str(in_square))
-                    print("possible: " + str(possible_vals[r][c]))
                 if len(possible_vals[r][c]) == 1:
                     val = possible_vals[r][c][0]
                     rows[row_r][row_c] = val
@@ -96,44 +87,3 @@ def solve(puzzle):
         iteration += 1
     
     return (solved, iteration, remaining, rows)
-
-
-def pretty_print(puzzle):
-    for row in puzzle:
-        print(str(row))
-
-
-# WORKS
-TEST_PUZZLE_1 = [  
-                    [0, 4, 5,   8, 7, 1,    0, 0, 6],
-                    [0, 2, 6,   0, 4, 0,    0, 0, 1],
-                    [0, 9, 0,   2, 5, 6,    4, 0, 0],
-
-                    [9, 0, 0,   4, 0, 0,    5, 6, 0],
-                    [2, 5, 4,   6, 0, 0,    1, 0, 0],
-                    [6, 8, 0,   0, 0, 0,    3, 0, 0],
-
-                    [4, 0, 9,   1, 3, 2,    6, 8, 0],
-                    [1, 6, 0,   0, 0, 8,    0, 3, 4],
-                    [0, 0, 8,   0, 0, 4,    2, 1, 0],
-                ]
-
-TEST_PUZZLE_2 = [   
-                    [3, 0, 0,   0, 0, 9,    0, 0, 0],
-                    [0, 0, 0,   0, 4, 0,    1, 0, 3],
-                    [0, 7, 1,   0, 0, 0,    0, 4, 2],
-
-                    [4, 1, 0,   3, 8, 0,    2, 9, 5],
-                    [7, 8, 9,   4, 5, 0,    6, 0, 1],
-                    [0, 0, 0,   6, 9, 0,    0, 7, 0],
-
-                    [1, 6, 0,   0, 7, 5,    0, 0, 0],
-                    [0, 0, 0,   0, 1, 0,    0, 2, 0],
-                    [0, 9, 3,   0, 0, 4,    5, 0, 0],
-                ]
-
-solution = solve(TEST_PUZZLE_2)
-print("Solved: " + str(solution[0]))
-print("Iterations: " + str(solution[1]))
-print("Remaining: " + str(solution[2]))
-pretty_print(solution[3])
